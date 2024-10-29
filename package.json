@@ -1,0 +1,22 @@
+{
+  "name": "teste-automacao-oxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "ui": "playwright test --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.48.1",
+    "@types/node": "^22.7.9",
+    "@types/pg": "^8.11.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
+  }
+}
