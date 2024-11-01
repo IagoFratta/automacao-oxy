@@ -1,14 +1,14 @@
 import { expect, Locator, Page } from "@playwright/test"
-import BasePage from "../BasePage"
 
-export default class LoginForm extends BasePage {
+export default class LoginForm {
     private campoUsuario: Locator;
     private campoSenha: Locator;
     private botaoEntrar: Locator;
     private mensagemCredenciaisInvalidas: Locator;
+    private readonly page: Page;
 
     constructor(page: Page) {
-        super(page);
+        this.page = page
         this.campoUsuario = this.page.getByPlaceholder('Usuário');
         this.campoSenha = this.page.getByPlaceholder('Senha');
         this.botaoEntrar = this.page.getByRole("button", { name: 'Entrar' });

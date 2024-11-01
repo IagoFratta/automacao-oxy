@@ -1,12 +1,16 @@
 import { expect, Page } from "@playwright/test"
-import BasePage from "../BasePage"
+import dotenv from 'dotenv';
+import { BasePage } from "../../pages"
+import { PageUrls } from "../../utils";
 import LoginForm from "./LoginForm"
+
+dotenv.config();
 
 export default class LoginPage extends BasePage {
     public loginForm: LoginForm;
 
     constructor(page: Page) {
-        super(page);
+        super(page, PageUrls.Login);
         this.loginForm = new LoginForm(this.page);
     }
 
@@ -15,8 +19,15 @@ export default class LoginPage extends BasePage {
         await expect(this.page).toHaveTitle('Entrar em Oxy Elotech');
     }
 
-    async login(user: string, password: string) {
-        await this.loginForm.preencherFormulario(user, password);
+    async logar() {
+        const usuario = process.env.USUARIO;
+        const senha = process.env.SENHA;
+    
+        if (!usuario || !senha) {
+            throw new Error("Usuário ou senha não definidos nas variáveis de ambiente");
+        }
+    
+        await this.loginForm.preencherFormulario(usuario, senha);
         await this.loginForm.submeterFormulario();
     }
 
